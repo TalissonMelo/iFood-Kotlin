@@ -1,17 +1,22 @@
 package com.talissonmelo.iFood.model
 
-import java.math.BigDecimal
-import java.util.*
 import javax.persistence.*
 
 @Entity
-data class Restaurante (
+data class Restaurante(
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
-    var nome: String,
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long = 1,
 
-        @Column(name = "taxa_frete")
-    var taxaFrete: BigDecimal
+    @Column(nullable = false)
+    var nome: String = "",
+
+    @Column(name = "taxa_frete", nullable = false)
+    var taxaFrete: Double = 10.0,
+
+    @ManyToOne
+    @JoinColumn(name = "cozinha_id")
+    var cozinha: Cozinha = Cozinha(1,"Brasileira")
 )
+
