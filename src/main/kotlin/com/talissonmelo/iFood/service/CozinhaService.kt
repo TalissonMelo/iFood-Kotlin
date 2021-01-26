@@ -14,4 +14,8 @@ class CozinhaService {
     fun listarCozinhas(): List<Cozinha> {
         return repository.findAll();
     }
+
+    fun cadastrarCozinha(cozinha: Cozinha): Cozinha {
+        return repository.save(cozinha);
+    }
 }

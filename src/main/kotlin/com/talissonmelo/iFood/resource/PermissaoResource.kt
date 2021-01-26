@@ -4,10 +4,7 @@ import com.talissonmelo.iFood.model.Permissao
 import com.talissonmelo.iFood.service.PermissaoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/permissoes"])
@@ -20,5 +17,11 @@ class PermissaoResource {
     @ResponseStatus(HttpStatus.OK)
     fun listar(): List<Permissao> {
         return service.listarPermissoes();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun cadastrar(permissao: Permissao) : Permissao {
+        return service.cadastrarPermissao(permissao);
     }
 }

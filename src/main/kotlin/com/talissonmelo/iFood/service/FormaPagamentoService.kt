@@ -14,4 +14,8 @@ class FormaPagamentoService {
     fun listarPagamentos(): List<FormaPagamento> {
         return repository.findAll();
     }
+
+    fun cadastrarPagamento(pagamento: FormaPagamento): FormaPagamento {
+        return repository.save(pagamento);
+    }
 }

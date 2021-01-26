@@ -14,4 +14,8 @@ class PermissaoService {
     fun listarPermissoes(): List<Permissao> {
         return repository.findAll();
     }
+
+    fun cadastrarPermissao(permissao: Permissao): Permissao {
+        return repository.save(permissao);
+    }
 }

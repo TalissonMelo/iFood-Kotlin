@@ -14,4 +14,8 @@ class RestauranteService {
     fun listarRestaurantes(): List<Restaurante> {
         return repository.findAll();
     }
+
+    fun cadastrarRestaurante(restaurante: Restaurante): Restaurante{
+        return repository.save(restaurante);
+    }
 }

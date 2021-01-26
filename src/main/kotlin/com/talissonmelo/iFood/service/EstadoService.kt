@@ -14,4 +14,8 @@ class EstadoService {
     fun listarEstados(): List<Estado> {
         return repository.findAll();
     }
+
+    fun cadastrarEstado(estado: Estado): Estado {
+        return repository.save(estado);
+    }
 }

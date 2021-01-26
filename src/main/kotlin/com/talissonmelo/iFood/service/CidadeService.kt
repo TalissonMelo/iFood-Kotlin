@@ -14,4 +14,8 @@ class CidadeService {
     fun listarCidades(): List<Cidade>{
         return repository.findAll();
     }
+
+    fun cadastrarCidade(cidade: Cidade) : Cidade {
+        return repository.save(cidade);
+    }
 }

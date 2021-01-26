@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 
 @Service
@@ -18,5 +19,11 @@ class FormaPagamentoResource {
     @ResponseStatus(HttpStatus.OK)
     fun listar(): List<FormaPagamento> {
         return service.listarPagamentos();
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun cadastrar(pagamento: FormaPagamento): FormaPagamento {
+        return service.cadastrarPagamento(pagamento);
     }
 }
