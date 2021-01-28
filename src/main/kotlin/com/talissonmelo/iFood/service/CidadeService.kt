@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class CidadeService {
 
     @Autowired
-    lateinit var repository: CidadeRepository;
+    lateinit var repository: CidadeRepository
 
     fun listarCidades(): List<Cidade>{
         return repository.findAll();
