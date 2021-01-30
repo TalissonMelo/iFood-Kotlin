@@ -26,4 +26,16 @@ class CidadeResource {
         var novaCidade: Cidade = service.cadastrarCidade(cidade);
         return ResponseEntity.ok().body(novaCidade);
     }
+
+    @GetMapping(value = ["/nome-cidade"])
+    fun buscarCidadesNome(nome: String) : ResponseEntity<List<Cidade>> {
+        var cidades: List<Cidade> = service.buscarCidadesNome(nome);
+        return ResponseEntity.ok().body(cidades);
+    }
+
+    @GetMapping(value = ["/cidade"])
+    fun buscarCidade(nome: String): ResponseEntity<Cidade> {
+        var cidade: Cidade =  service.buscarCidadeNome(nome);
+        return ResponseEntity.ok().body(cidade);
+    }
 }

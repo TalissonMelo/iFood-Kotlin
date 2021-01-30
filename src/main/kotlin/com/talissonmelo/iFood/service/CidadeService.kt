@@ -18,4 +18,12 @@ class CidadeService {
     fun cadastrarCidade(cidade: Cidade) : Cidade {
         return repository.save(cidade);
     }
+
+    fun buscarCidadesNome(nome: String) : List<Cidade> {
+        return repository.findByNomeLike( nome + "%");
+    }
+
+    fun buscarCidadeNome(nome: String) : Cidade {
+        return repository.findByNome(nome).get();
+    }
 }
