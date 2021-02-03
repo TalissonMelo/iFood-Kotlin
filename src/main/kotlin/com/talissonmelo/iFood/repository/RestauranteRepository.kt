@@ -8,4 +8,10 @@ interface RestauranteRepository : JpaRepository<Restaurante, Long> {
     fun findByTaxaFreteBetween(taxaInicial: Double, taxaFinal: Double) : List<Restaurante>;
 
     fun findByNomeContainingAndCozinhaId(nome: String, idCozinha: Long) : List<Restaurante>;
+
+    fun findFirstByNomeContaining(nome: String) : Restaurante;
+
+    fun findTop2ByNomeContaining(nome:String): List<Restaurante>;
+
+    fun countByCozinhaId(idCozinha: Long): Int;
 }

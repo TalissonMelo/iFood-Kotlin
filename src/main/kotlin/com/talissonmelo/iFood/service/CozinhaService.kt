@@ -15,6 +15,10 @@ class CozinhaService {
         return repository.findAll();
     }
 
+    fun existeCozinha(nome: String): Boolean {
+        return repository.existsByNome(nome);
+    }
+
     fun cadastrarCozinha(cozinha: Cozinha): Cozinha {
         return repository.save(cozinha);
     }

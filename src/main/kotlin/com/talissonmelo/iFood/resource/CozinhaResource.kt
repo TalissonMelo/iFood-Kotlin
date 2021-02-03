@@ -20,6 +20,11 @@ class CozinhaResource {
         return service.listarCozinhas();
     }
 
+    @GetMapping(value = ["/nome"])
+    fun existeCozinha(nome: String): Boolean{
+        return service.existeCozinha(nome);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun cadastrar(@RequestBody cozinha: Cozinha) : ResponseEntity<Cozinha> {

@@ -28,6 +28,24 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
         return service.listarRestaurantesNomeAndCozinhaId(nome,idCozinha);
     }
 
+    @GetMapping(value = ["/por-nome"])
+    @ResponseStatus(HttpStatus.OK)
+    fun listarRestauranteNome(nome: String): Restaurante {
+        return service.buscarUmRestaurantePorNome(nome);
+    }
+
+    @GetMapping(value = ["/nome"])
+    @ResponseStatus(HttpStatus.OK)
+    fun listarDoisRestauranteNome(nome: String): List<Restaurante> {
+        return service.buscarDoisRestaurantePorNome(nome);
+    }
+
+    @GetMapping(value = ["/cozinhas"])
+    @ResponseStatus(HttpStatus.OK)
+    fun listarCozinhaRestaurante(idCozinha: Long): Int {
+        return service.cozinhaContemRestaurantes(idCozinha);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun cadastrar(restaurante: Restaurante) : Restaurante {
