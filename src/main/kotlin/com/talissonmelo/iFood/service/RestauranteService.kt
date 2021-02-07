@@ -17,7 +17,7 @@ class RestauranteService constructor(@Autowired val repository: RestauranteRepos
     }
 
     fun listarRestaurantesNomeAndCozinhaId(nome: String, idCozinha: Long): List<Restaurante> {
-        return repository.findByNomeContainingAndCozinhaId(nome,idCozinha);
+        return repository.consultarPorNome(nome,idCozinha);
     }
 
     fun cadastrarRestaurante(restaurante: Restaurante): Restaurante{
