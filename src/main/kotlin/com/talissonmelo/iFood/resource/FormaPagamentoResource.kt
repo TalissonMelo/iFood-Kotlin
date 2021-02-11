@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.ResponseStatus
 
 @Service
-class FormaPagamentoResource {
-
-    @Autowired
-    lateinit var service: FormaPagamentoService;
+class FormaPagamentoResource constructor( @Autowired var service: FormaPagamentoService) {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

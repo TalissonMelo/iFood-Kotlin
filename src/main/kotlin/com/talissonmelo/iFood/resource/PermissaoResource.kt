@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/permissoes"])
-class PermissaoResource {
-
-    @Autowired
-    lateinit var service: PermissaoService;
+class PermissaoResource constructor( @Autowired var service: PermissaoService) {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

@@ -1,6 +1,5 @@
 package com.talissonmelo.iFood.resource
 
-import com.talissonmelo.iFood.model.Cidade
 import com.talissonmelo.iFood.model.Cozinha
 import com.talissonmelo.iFood.service.CozinhaService
 import org.springframework.beans.factory.annotation.Autowired
@@ -10,10 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/cozinhas"])
-class CozinhaResource {
-
-    @Autowired
-    lateinit var service: CozinhaService;
+class CozinhaResource constructor(@Autowired var service: CozinhaService) {
 
     @GetMapping
     fun listar(): List<Cozinha> {
