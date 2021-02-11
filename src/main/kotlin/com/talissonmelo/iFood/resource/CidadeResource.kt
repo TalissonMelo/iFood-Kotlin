@@ -50,7 +50,7 @@ class CidadeResource constructor(@Autowired var service: CidadeService){
 
     @GetMapping(value = ["/{idCidade}"])
     fun buscarPorId(@PathVariable idCidade: Long): ResponseEntity<Cidade> {
-        var cidade: Cidade = service.buscarCidadeId(idCidade);
-        return ResponseEntity.ok().body(cidade);
+        var novaCidade: Cidade = service.buscarCidadeId(idCidade);
+        return ResponseEntity.ok().body(novaCidade);
     }
 }
