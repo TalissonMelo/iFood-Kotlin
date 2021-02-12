@@ -1,6 +1,8 @@
 package com.talissonmelo.iFood.model
 
+import java.util.*
 import javax.persistence.*
+
 
 @Entity
 data class Restaurante(
@@ -17,6 +19,13 @@ data class Restaurante(
 
     @ManyToOne
     @JoinColumn(name = "cozinha_id")
-    var cozinha: Cozinha = Cozinha(1,"Brasileira")
+    var cozinha: Cozinha = Cozinha(1,"Brasileira"),
+
+
+    @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    @JoinTable(name = "restaurante_forma_pagamento",
+        joinColumns = [JoinColumn(name = "restaurante_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "forma_pagamento_id", referencedColumnName = "id")])
+    var formasPagamentos: List<FormaPagamento>  = mutableListOf()
 )
 
