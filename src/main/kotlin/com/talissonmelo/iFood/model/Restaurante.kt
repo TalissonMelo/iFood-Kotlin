@@ -6,7 +6,7 @@ import javax.persistence.*
 
 
 @Entity
-data class Restaurante(
+data class Restaurante (
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,9 @@ data class Restaurante(
     @ManyToOne
     @JoinColumn(name = "cozinha_id")
     var cozinha: Cozinha = Cozinha(1,"Brasileira"),
+
+    @Embedded
+    var endereco: Endereco = Endereco("", "", "", "", "", Cidade(1,"", Estado(1,""))),
 
     @JsonIgnore
     @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
