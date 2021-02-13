@@ -43,7 +43,7 @@ class RestauranteService constructor(@Autowired val repository: RestauranteRepos
 
     fun atualizarRestauranteId(idRestaurante: Long, restaurante: Restaurante) : Restaurante{
         var restauranteAtualizar : Restaurante = buscarRestauranteId(idRestaurante);
-        BeanUtils.copyProperties(restaurante, restauranteAtualizar, "id", "formasPagamentos");
+        BeanUtils.copyProperties(restaurante, restauranteAtualizar, "id", "formasPagamentos", "endereco");
         return repository.save(restauranteAtualizar);
     }
 

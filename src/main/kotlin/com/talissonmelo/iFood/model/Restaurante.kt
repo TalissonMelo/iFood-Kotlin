@@ -22,6 +22,7 @@ data class Restaurante (
     @JoinColumn(name = "cozinha_id")
     var cozinha: Cozinha = Cozinha(1,"Brasileira"),
 
+    @JsonIgnore
     @Embedded
     var endereco: Endereco = Endereco("", "", "", "", "", Cidade(1,"", Estado(1,""))),
 
