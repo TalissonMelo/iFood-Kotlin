@@ -4,12 +4,11 @@ import com.talissonmelo.iFood.model.FormaPagamento
 import com.talissonmelo.iFood.service.FormaPagamentoService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
-import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.ResponseStatus
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 
-@Service
+@RestController
+@RequestMapping(value = ["/pagamentos"])
 class FormaPagamentoResource constructor( @Autowired var service: FormaPagamentoService) {
 
     @GetMapping
@@ -18,9 +17,27 @@ class FormaPagamentoResource constructor( @Autowired var service: FormaPagamento
         return service.listarPagamentos();
     }
 
+    @GetMapping(value = ["/{idPagamento}"])
+    fun buscarId(@PathVariable idPagamento: Long): ResponseEntity<FormaPagamento> {
+         var pagamento: FormaPagamento = service.buscarPagamentoId(idPagamento);
+        return ResponseEntity.ok().body(pagamento);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrar(pagamento: FormaPagamento): FormaPagamento {
+    fun cadastrar(@RequestBody pagamento: FormaPagamento): FormaPagamento {
         return service.cadastrarPagamento(pagamento);
+    }
+
+    @PutMapping(value = ["/{idPagamento}"])
+    fun atualizar(@PathVariable idPagamento: Long, @RequestBody pagamento: FormaPagamento): ResponseEntity<FormaPagamento>{
+        var pagamentoAtualizado : FormaPagamento = service.atualizarPagamento(idPagamento, pagamento);
+        return ResponseEntity.ok().body(pagamento);
+    }
+
+    @DeleteMapping(value = ["/{idPagamento}"])
+    fun deletar(@PathVariable idPagamento: Long): ResponseEntity<Void> {
+        service.deletarPagamentoId(idPagamento);
+        return ResponseEntity.noContent().build();
     }
 }

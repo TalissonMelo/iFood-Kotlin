@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CozinhaService {
-
-    @Autowired
-    lateinit var repository: CozinhaRepository;
+class CozinhaService constructor( @Autowired var repository: CozinhaRepository){
 
     fun listarCozinhas(): List<Cozinha> {
         return repository.findAll();
