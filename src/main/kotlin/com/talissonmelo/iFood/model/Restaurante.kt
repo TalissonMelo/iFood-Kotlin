@@ -1,5 +1,6 @@
 package com.talissonmelo.iFood.model
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.util.*
 import javax.persistence.*
 
@@ -21,7 +22,7 @@ data class Restaurante(
     @JoinColumn(name = "cozinha_id")
     var cozinha: Cozinha = Cozinha(1,"Brasileira"),
 
-
+    @JsonIgnore
     @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinTable(name = "restaurante_forma_pagamento",
         joinColumns = [JoinColumn(name = "restaurante_id", referencedColumnName = "id")],
