@@ -36,9 +36,13 @@ data class Restaurante (
         var endereco: Endereco = Endereco("", "", "", "", "", Cidade(1,"", Estado(1,""))),
 
         @JsonIgnore
+        @OneToMany(mappedBy = "restaurante")
+        var produtos : List<Produto>  = mutableListOf(),
+
+        @JsonIgnore
         @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
         @JoinTable(name = "restaurante_forma_pagamento",
                 joinColumns = [JoinColumn(name = "restaurante_id", referencedColumnName = "id")],
                 inverseJoinColumns = [JoinColumn(name = "forma_pagamento_id", referencedColumnName = "id")])
-        var formasPagamentos: List<FormaPagamento>  = mutableListOf()
+        var formasPagamentos: List<FormaPagamento>  = mutableListOf(),
 )
