@@ -10,5 +10,8 @@ data class Estado (
     var id: Long = 1,
 
     @Column(nullable = false)
-    var nome: String = ""
+    var nome: String = "",
+
+    @Column(nullable = false)
+    var uf: String = ""
 )

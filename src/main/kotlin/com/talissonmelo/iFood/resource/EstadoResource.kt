@@ -22,23 +22,4 @@ class EstadoResource  constructor(@Autowired var service: EstadoService) {
         var estado: Estado = service.buscarEstadoId(idEstado);
         return ResponseEntity.ok().body(estado);
     }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrar(@RequestBody estado: Estado): Estado {
-        return service.cadastrarEstado(estado);
-    }
-
-    @PutMapping(value = ["/{idEstado}"])
-    fun atualizar(@PathVariable idEstado: Long, @RequestBody estado: Estado) : ResponseEntity<Estado> {
-        var estadoAtualizado: Estado = service.atualizarEstado(idEstado,estado);
-        return ResponseEntity.ok().body(estadoAtualizado);
-    }
-
-    @DeleteMapping(value = ["/{idEstado}"])
-    fun deletar(@PathVariable idEstado: Long): ResponseEntity<Void> {
-        service.deletarEstadoId(idEstado);
-        return ResponseEntity.noContent().build();
-    }
-
 }

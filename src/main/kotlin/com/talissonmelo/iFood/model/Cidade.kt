@@ -14,5 +14,5 @@ data class Cidade (
 
         @ManyToOne
         @JoinColumn(name = "estado_id", nullable = false)
-        var estado: Estado = Estado(1, "Minas Gerais")
+        var estado: Estado = Estado(1, "")
 )
