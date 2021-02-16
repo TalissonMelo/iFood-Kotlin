@@ -55,8 +55,8 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrar(@RequestBody restaurante: Restaurante) : Restaurante {
-        return service.cadastrarRestaurante(restaurante);
+    fun cadastrar(@RequestBody restaurante: Restaurante) : ResponseEntity<Restaurante> {
+        return ResponseEntity.ok().body(service.cadastrarRestaurante(restaurante));
     }
 
     @PutMapping(value = ["/{idRestaurante}"])

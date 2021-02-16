@@ -1,6 +1,5 @@
 package com.talissonmelo.iFood.model
 
-import java.lang.reflect.Constructor
 import javax.persistence.*
 
 @Entity
