@@ -41,3 +41,15 @@ insert into forma_pagamento (id, descricao) values (3, 'Dinheiro');
 
 insert into permissao (id, nome, descricao) values (1, 'CONSULTAR_COZINHAS', 'Permite consultar cozinhas');
 insert into permissao (id, nome, descricao) values (2, 'EDITAR_COZINHAS', 'Permite editar cozinhas');
+
+insert into restaurante (id, nome, taxa_frete, cozinha_id, end_cidade_id, end_cep, end_logradouro, end_numero, end_bairro, data_cadastro, data_atualizacao) values (1, 'Thai Gourmet', 10, 1, 1, '38400-999', 'Rua João Pinheiro', '1000', 'Centro', utc_timestamp, utc_timestamp);
+insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (2, 'Thai Delivery', 9.50, 1, utc_timestamp, utc_timestamp);
+insert into restaurante (id, nome, taxa_frete, cozinha_id, data_cadastro, data_atualizacao) values (3, 'Tuk Tuk Comida Indiana', 15, 2, utc_timestamp, utc_timestamp);
+
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (1, 1);
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (1, 2);
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (1, 3);
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (2, 3);
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (3, 2);
+insert into restaurante_forma_pagamento (restaurante_id, forma_pagamento_id) values (3, 3);
+
