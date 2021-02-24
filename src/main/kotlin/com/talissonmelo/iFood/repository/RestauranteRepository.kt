@@ -16,4 +16,7 @@ interface RestauranteRepository : JpaRepository<Restaurante, Long> {
     fun findTop2ByNomeContaining(nome:String): List<Restaurante>;
 
     fun countByCozinhaId(idCozinha: Long): Int;
+
+    @Query("from Restaurante res join res.cozinha join fetch res.formasPagamentos")
+    override fun findAll(): List<Restaurante>
 }

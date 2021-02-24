@@ -39,8 +39,7 @@ data class Restaurante (
         @OneToMany(mappedBy = "restaurante")
         var produtos : List<Produto>  = mutableListOf(),
 
-        @JsonIgnore
-        @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+        @ManyToMany(cascade = [CascadeType.ALL])
         @JoinTable(name = "restaurante_forma_pagamento",
                 joinColumns = [JoinColumn(name = "restaurante_id", referencedColumnName = "id")],
                 inverseJoinColumns = [JoinColumn(name = "forma_pagamento_id", referencedColumnName = "id")])
