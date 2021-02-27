@@ -13,6 +13,6 @@ data class Cidade (
         var nome: String = "",
 
         @ManyToOne
-        @JoinColumn(name = "estado_id", nullable = false)
+        @JoinColumn(name = "id_estado", nullable = false)
         var estado: Estado = Estado(1, "")
 )
