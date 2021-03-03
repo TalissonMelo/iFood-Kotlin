@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/pagamentos"])
+@CrossOrigin("http://localhost:4200")
 class FormaPagamentoResource constructor( @Autowired var service: FormaPagamentoService) {
 
     @GetMapping

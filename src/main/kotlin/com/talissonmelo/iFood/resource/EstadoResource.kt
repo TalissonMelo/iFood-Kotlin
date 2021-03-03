@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/estados"])
+@CrossOrigin("http://localhost:4200")
 class EstadoResource  constructor(@Autowired var service: EstadoService) {
 
     @GetMapping

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/restaurantes"])
+@CrossOrigin("http://localhost:4200")
 class RestauranteResource constructor(@Autowired var service: RestauranteService){
 
     @GetMapping

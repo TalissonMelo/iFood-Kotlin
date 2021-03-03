@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(value = ["/permissoes"])
+@CrossOrigin("http://localhost:4200")
 class PermissaoResource constructor( @Autowired var service: PermissaoService) {
 
     @GetMapping
