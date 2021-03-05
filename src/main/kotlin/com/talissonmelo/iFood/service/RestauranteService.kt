@@ -46,8 +46,4 @@ class RestauranteService constructor(@Autowired val repository: RestauranteRepos
         BeanUtils.copyProperties(restaurante, restauranteAtualizar, "id", "formasPagamentos", "endereco", "dataCadastro", "produtos");
         return repository.save(restauranteAtualizar);
     }
-
-    fun deletaRestauranteId(idRestaurante: Long) {
-        repository.deleteById(idRestaurante);
-    }
 }

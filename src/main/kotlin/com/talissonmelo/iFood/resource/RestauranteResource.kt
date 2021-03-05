@@ -65,10 +65,4 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
         var restauranteAtualizado : Restaurante = service.atualizarRestauranteId(idRestaurante, restaurante);
         return ResponseEntity.ok().body(restauranteAtualizado);
     }
-
-    @DeleteMapping(value = ["/{idRestaurante}"])
-    fun deletarRestauranteId(@PathVariable idRestaurante: Long): ResponseEntity<Void> {
-        service.deletaRestauranteId(idRestaurante);
-        return ResponseEntity.noContent().build();
-    }
 }
