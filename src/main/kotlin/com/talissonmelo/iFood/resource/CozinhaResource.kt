@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping(value = ["/cozinhas"])
@@ -30,13 +31,13 @@ class CozinhaResource constructor(@Autowired var service: CozinhaService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrar(@RequestBody cozinha: Cozinha) : ResponseEntity<Cozinha> {
+    fun cadastrar(@Valid @RequestBody cozinha: Cozinha) : ResponseEntity<Cozinha> {
         var novaCozinha: Cozinha = service.cadastrarCozinha(cozinha);
         return ResponseEntity.ok().body(novaCozinha);
     }
 
     @PutMapping(value = ["/{idCozinha}"])
-    fun atualizar(@PathVariable idCozinha: Long, @RequestBody cozinha: Cozinha): ResponseEntity<Cozinha> {
+    fun atualizar(@Valid @PathVariable idCozinha: Long, @RequestBody cozinha: Cozinha): ResponseEntity<Cozinha> {
         var novaCozinha: Cozinha = service.atualizarCozinha(idCozinha, cozinha);
         return ResponseEntity.ok().body(novaCozinha);
     }
