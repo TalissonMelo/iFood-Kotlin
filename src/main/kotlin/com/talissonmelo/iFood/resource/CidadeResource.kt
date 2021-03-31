@@ -18,18 +18,6 @@ class CidadeResource constructor(@Autowired var service: CidadeService){
         return service.listarCidades();
     }
 
-    @GetMapping(value = ["/nome-cidade"])
-    fun buscarCidadesNome(nome: String) : ResponseEntity<List<Cidade>> {
-        var cidades: List<Cidade> = service.buscarCidadesNome(nome);
-        return ResponseEntity.ok().body(cidades);
-    }
-
-    @GetMapping(value = ["/cidade"])
-    fun buscarCidade(nome: String): ResponseEntity<Cidade> {
-        var cidade: Cidade =  service.buscarCidadeNome(nome);
-        return ResponseEntity.ok().body(cidade);
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun cadastrar(@RequestBody cidade: Cidade) : ResponseEntity<Cidade> {

@@ -28,9 +28,6 @@ class CidadeService constructor(@Autowired var repository: CidadeRepository) {
         return repository.save(cidadeUpdate);
     }
 
-    fun buscarCidadesNome(nome: String)  = repository.findByNomeLike( nome + "%") ?: throw CidadeException("cidade de nome não cadastrada");
-
-    fun buscarCidadeNome(nome: String) = repository.findByNome(nome).get()  ?: throw CidadeException("cidade de nome não cadastrada");
-
-    fun buscarCidadeId(idCidade: Long) = repository.findById(idCidade).get() ?: throw CidadeException("cidade não cadastrada");
+    fun buscarCidadeId(idCidade: Long) =
+            repository.findById(idCidade).get() ?: throw CidadeException("cidade não cadastrada");
 }

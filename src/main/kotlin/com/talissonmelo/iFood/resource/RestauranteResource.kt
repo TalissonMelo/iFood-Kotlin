@@ -24,36 +24,6 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
         return ResponseEntity.ok().body(restaurante);
     }
 
-    @GetMapping(value = ["/por-taxa-frete"])
-    @ResponseStatus(HttpStatus.OK)
-    fun listarRestaurantesTaxaFrete(taxaInicial: Double, taxaFinal: Double): List<Restaurante> {
-        return service.listarRestaurantesTaxaFrete(taxaInicial, taxaFinal);
-    }
-
-    @GetMapping(value = ["/por-nome/id-cozinha"])
-    @ResponseStatus(HttpStatus.OK)
-    fun listarRestauranteNomeAndCozinhaId(nome: String, idCozinha: Long): List<Restaurante> {
-        return service.listarRestaurantesNomeAndCozinhaId(nome,idCozinha);
-    }
-
-    @GetMapping(value = ["/por-nome"])
-    @ResponseStatus(HttpStatus.OK)
-    fun listarRestauranteNome(nome: String): Restaurante {
-        return service.buscarUmRestaurantePorNome(nome);
-    }
-
-    @GetMapping(value = ["/nome"])
-    @ResponseStatus(HttpStatus.OK)
-    fun listarDoisRestauranteNome(nome: String): List<Restaurante> {
-        return service.buscarDoisRestaurantePorNome(nome);
-    }
-
-    @GetMapping(value = ["/cozinhas"])
-    @ResponseStatus(HttpStatus.OK)
-    fun listarCozinhaRestaurante(idCozinha: Long): Int {
-        return service.cozinhaContemRestaurantes(idCozinha);
-    }
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     fun cadastrar(@RequestBody restaurante: Restaurante) : ResponseEntity<Restaurante> {
