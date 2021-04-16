@@ -5,6 +5,7 @@ import com.talissonmelo.iFood.repository.RestauranteRepository
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
 class RestauranteService constructor(@Autowired val repository: RestauranteRepository) {
@@ -17,10 +18,12 @@ class RestauranteService constructor(@Autowired val repository: RestauranteRepos
         return repository.findById(idRestaurante).get();
     }
 
+    @Transactional
     fun cadastrarRestaurante(restaurante: Restaurante): Restaurante{
         return repository.save(restaurante);
     }
 
+    @Transactional
     fun atualizarRestauranteId(idRestaurante: Long, restaurante: Restaurante) : Restaurante{
         var restauranteAtualizar : Restaurante = buscarRestauranteId(idRestaurante);
         BeanUtils.copyProperties(restaurante, restauranteAtualizar, "id", "formasPagamentos", "endereco", "dataCadastro", "produtos");

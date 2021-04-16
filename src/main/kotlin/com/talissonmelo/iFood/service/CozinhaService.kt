@@ -5,6 +5,7 @@ import com.talissonmelo.iFood.repository.CozinhaRepository
 import org.springframework.beans.BeanUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
 class CozinhaService constructor( @Autowired var repository: CozinhaRepository){
@@ -17,6 +18,7 @@ class CozinhaService constructor( @Autowired var repository: CozinhaRepository){
         return repository.existsByNome(nome);
     }
 
+    @Transactional
     fun cadastrarCozinha(cozinha: Cozinha): Cozinha {
         return repository.save(cozinha);
     }
@@ -25,12 +27,14 @@ class CozinhaService constructor( @Autowired var repository: CozinhaRepository){
         return repository.findById(idCozinha).get();
     }
 
+    @Transactional
     fun atualizarCozinha(idCozinha: Long ,cozinha: Cozinha): Cozinha {
         var cozinhaAtualizada: Cozinha = buscarCozinhaId(idCozinha);
         BeanUtils.copyProperties(cozinha,cozinhaAtualizada, "id");
         return repository.save(cozinhaAtualizada);
     }
 
+    @Transactional
     fun deletarCozinha(idCozinha: Long) {
         repository.deleteById(idCozinha);
     }
