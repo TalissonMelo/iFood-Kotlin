@@ -26,4 +26,10 @@ class PermissaoResource constructor(@Autowired var repository: PermissaoReposito
         var permissao: Permissao = service.buscarPermissaoId(idPermissao);
         return ResponseEntity.ok().body(permissao);
     }
+
+    @DeleteMapping(value = ["/{idPermissao}"])
+    fun deletarPermissaoId(@PathVariable idPermissao: Long): ResponseEntity<Permissao> {
+        service.deletarPermissaoId(idPermissao);
+        return ResponseEntity.noContent().build();
+    }
 }
