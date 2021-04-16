@@ -23,4 +23,10 @@ class FormaPagamentoResource constructor(@Autowired var repository: FormaPagamen
         serive.deletarFormaPagamento(idPagamento);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = ["/{idPagamento}"])
+    fun buscarPagamento(@PathVariable idPagamento: Long): ResponseEntity<FormaPagamento> {
+        var pagamento:FormaPagamento = serive.buscarFormaPagamentoId(idPagamento);
+        return ResponseEntity.ok().body(pagamento);
+    }
 }
