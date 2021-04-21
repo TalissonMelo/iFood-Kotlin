@@ -32,4 +32,12 @@ class PermissaoResource constructor(@Autowired var repository: PermissaoReposito
         service.deletarPermissaoId(idPermissao);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    fun salvar(@RequestBody permissao: Permissao): ResponseEntity<Permissao> {
+        var permissao: Permissao = service.salvarPermissao(permissao);
+        return ResponseEntity.ok().body(permissao);
+    }
+
 }

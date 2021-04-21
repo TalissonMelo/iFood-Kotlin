@@ -17,4 +17,9 @@ class PermissaoService ( @Autowired var repository: PermissaoRepository) {
     fun deletarPermissaoId(idPermissao: Long){
         repository.deleteById(idPermissao);
     }
+
+    @Transactional
+    fun salvarPermissao(permissao: Permissao): Permissao{
+        return repository.save(permissao);
+    }
 }
