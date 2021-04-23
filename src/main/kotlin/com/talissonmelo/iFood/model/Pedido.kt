@@ -2,7 +2,7 @@ package com.talissonmelo.iFood.model
 
 import com.talissonmelo.iFood.model.enums.StatusPedido
 import org.hibernate.annotations.CreationTimestamp
-import java.util.*
+import java.time.OffsetDateTime
 import javax.persistence.*
 
 @Entity
@@ -17,15 +17,13 @@ data class Pedido (
 
         @Embedded
         var endereco: Endereco = Endereco(),
-
         var status : StatusPedido = StatusPedido.CANCELADO,
 
         @CreationTimestamp
-        var dataCriacao:Date = Date(),
-
-        var dataConfirmacao :Date = Date(),
-        var dataCancelamento: Date = Date(),
-        var dataEntrega: Date = Date(),
+        var dataCriacao: OffsetDateTime = OffsetDateTime.now(),
+        var dataConfirmacao :OffsetDateTime = OffsetDateTime.now(),
+        var dataCancelamento: OffsetDateTime = OffsetDateTime.now(),
+        var dataEntrega: OffsetDateTime = OffsetDateTime.now(),
 
         @ManyToOne
         @JoinColumn(nullable = false, name = "forma_pagamento_id")

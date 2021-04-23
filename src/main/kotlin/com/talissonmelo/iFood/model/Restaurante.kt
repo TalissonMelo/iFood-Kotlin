@@ -3,7 +3,7 @@ package com.talissonmelo.iFood.model
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
-import java.util.*
+import java.time.OffsetDateTime
 import javax.persistence.*
 
 @Entity
@@ -21,11 +21,11 @@ data class Restaurante (
 
         @CreationTimestamp
         @Column(nullable = false,  columnDefinition = "datetime")
-        var dataAtualizacao: Date = Date(),
+        var dataAtualizacao: OffsetDateTime = OffsetDateTime.now(),
 
         @UpdateTimestamp
         @Column(nullable = false,  columnDefinition = "datetime")
-        var dataCadastro: Date = Date(),
+        var dataCadastro:  OffsetDateTime = OffsetDateTime.now(),
 
         @ManyToOne
         @JoinColumn(name = "cozinha_id", nullable = false)

@@ -1,6 +1,7 @@
 package com.talissonmelo.iFood.model
 
 import org.hibernate.annotations.CreationTimestamp
+import java.time.OffsetDateTime
 import java.util.*
 import javax.persistence.*
 
@@ -22,7 +23,7 @@ data class Usuario (
 
         @CreationTimestamp
         @Column(nullable = false, columnDefinition = "datetime")
-        var dataCadastro : Date = Date(),
+        var dataCadastro : OffsetDateTime = OffsetDateTime.now(),
 
         @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
         @JoinTable(name = "usuario_grupo",
