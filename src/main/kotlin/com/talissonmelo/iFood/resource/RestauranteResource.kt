@@ -1,17 +1,21 @@
 package com.talissonmelo.iFood.resource
 
 import com.talissonmelo.iFood.dto.RestauranteModel
+import com.talissonmelo.iFood.dto.cadastro.RestauranteCadastro
+import com.talissonmelo.iFood.model.Cozinha
 import com.talissonmelo.iFood.model.Restaurante
+import com.talissonmelo.iFood.service.CozinhaService
 import com.talissonmelo.iFood.service.RestauranteService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping(value = ["/restaurantes"])
 @CrossOrigin("http://localhost:4200")
-class RestauranteResource constructor(@Autowired var service: RestauranteService){
+class RestauranteResource constructor(@Autowired var service: RestauranteService, @Autowired var cozinhaService: CozinhaService){
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -28,13 +32,13 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun cadastrar(@RequestBody restaurante: Restaurante) : ResponseEntity<RestauranteModel> {
-        return ResponseEntity.ok().body(restauranteParaRestauranteModel(service.cadastrarRestaurante(restaurante)));
+    fun cadastrar(@Valid @RequestBody restaurante: RestauranteCadastro) : ResponseEntity<RestauranteModel> {
+        return ResponseEntity.ok().body(restauranteParaRestauranteModel(service.cadastrarRestaurante(paraRestaurante(restaurante))));
     }
 
     @PutMapping(value = ["/{idRestaurante}"])
-    fun atualizar(@PathVariable idRestaurante: Long, @RequestBody restaurante: Restaurante) : ResponseEntity<RestauranteModel> {
-        var restauranteAtualizado : Restaurante = service.atualizarRestauranteId(idRestaurante, restaurante);
+    fun atualizar(@PathVariable idRestaurante: Long,@Valid @RequestBody restaurante: RestauranteCadastro) : ResponseEntity<RestauranteModel> {
+        var restauranteAtualizado : Restaurante = service.atualizarRestauranteId(idRestaurante, this.paraRestaurante(restaurante));
         return ResponseEntity.ok().body(restauranteParaRestauranteModel(restauranteAtualizado));
     }
 
@@ -49,5 +53,14 @@ class RestauranteResource constructor(@Autowired var service: RestauranteService
 
     private fun restauranteParaRestauranteModels(restaurantes: List<Restaurante>): List<RestauranteModel> {
        return restaurantes.map { restaurante -> restauranteParaRestauranteModel(restaurante)  }
+    }
+
+    private fun paraRestaurante(restauranteCadastro: RestauranteCadastro): Restaurante {
+        var restaurante: Restaurante = Restaurante();
+        restaurante.nome = restauranteCadastro.nome;
+        restaurante.taxaFrete = restauranteCadastro.taxaFrete;
+        var cozinha:Cozinha = cozinhaService.buscarCozinhaId(restauranteCadastro.cozinha.id);
+        restaurante.cozinha = cozinha;
+        return restaurante;
     }
 }
