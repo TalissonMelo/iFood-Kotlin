@@ -10,7 +10,6 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping(value = ["/cozinhas"])
-@CrossOrigin("http://localhost:4200")
 class CozinhaResource constructor(@Autowired var service: CozinhaService) {
 
     @GetMapping
